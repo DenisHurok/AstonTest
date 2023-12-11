@@ -32,6 +32,12 @@ public class AppTest {
     public void quit() {
         Driver.quitDriver();
     }
+    public void cookieClose() {
+        WebElement cookieClose = driver.findElement(By.xpath("//button[@id='cookie-agree']"));
+        if (cookieClose.isDisplayed()) {
+            cookieClose.click();
+        }
+    }
 
     @Test
     public void task1() {
@@ -56,6 +62,7 @@ public class AppTest {
 
     @Test
     public void task3() {
+        cookieClose();
         driver.findElement(By.xpath("//a[contains(text(),'Подробнее о сервисе')]")).click();
         Assert.assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", driver.getCurrentUrl());
     }
@@ -70,10 +77,7 @@ public class AppTest {
         WebElement email = driver.findElement(By.id("connection-email"));
         email.sendKeys("Abc@mail.ru");
 
-        WebElement cookieClose = driver.findElement(By.xpath("//button[@class='cookie__close']"));
-        if (cookieClose.isDisplayed()) {
-            cookieClose.click();
-        }
+        cookieClose();
         WebElement form = driver.findElement(By.id("pay-connection"));
         WebElement button = form.findElement(By.xpath(".//button[contains(@class, 'button button__default') and text()='Продолжить']"));
         button.click();
