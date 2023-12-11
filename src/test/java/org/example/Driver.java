@@ -9,7 +9,7 @@ public class Driver {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            System.setProperty("webdriver.chrome.driver", "src/test/java/org/example/resource/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "src/test/java/resource/chromedriver.exe");
             driver = new ChromeDriver();
             driver.manage().window().maximize();
         }
